@@ -1,37 +1,20 @@
 import 'package:flutter/material.dart';
 
+import 'package:comvalglo/ui/home/home_screen.dart';
+
 void main() => runApp(App());
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'ComValglo',
+      title: 'ComValGlo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
+        primaryColor: Colors.redAccent[400],
+        accentColor: Colors.purple[800],
       ),
-      home: HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('ComValglo'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Hello world !',
-            ),
-          ],
-        ),
-      ),
+      home: HomeScreen(),
     );
   }
 }
