@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image:  cirrusci/flutter:latest
+      image:  cirrusci/flutter:beta
 
     steps:
     - name: Install dependencies
