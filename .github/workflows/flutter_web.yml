@@ -1,0 +1,37 @@
+name: Flutter CD
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: Build and deploy to Github Pages
+    
+    env:
+      my_secret: ${{secrets.GH_ACCESS_TOKEN}}
+
+    runs-on: ubuntu-latest
+
+    container:
+      image:  cirrusci/flutter:latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        flutter config --enable-web
+        flutter pub get
+        
+    - name: Deploy to Github Pages
+      run: |
+          cd build/web
+          git init
+          git config --global user.email l.gilhard@gmail.com
+          git config --global user.name Lucas GILHARD
+          git status
+          git remote add origin https://${{secrets.GH_ACCESS_TOKEN}}@github.com/gilhardl/com_valglo.git
+          git checkout -b gh-pages
+          git add --all
+          git commit -m "update"
+          git push origin gh-pages -f
