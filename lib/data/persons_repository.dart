@@ -45,7 +45,7 @@ class PersonsRepository {
       location: 'Larnage (26)',
       picture: 'sarah.png',
       presentation:
-          'Je suis quelqu’un de très organisée et dynamique. Je suis toujours là pour aider les autres. J’aime pratiquer la boxe, car cela me permet de toujours me dépasser.',
+          'Je suis quelqu’un de très organisée et dynamique. Généreuse, je suis toujours là pour aider les autres. Je suis passionnée de cuisine, notamment de pâtisserie. J’aime pratiquer la boxe, car cela me permet de toujours me dépasser.',
     ),
   ];
 }

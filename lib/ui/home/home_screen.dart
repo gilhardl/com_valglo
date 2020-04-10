@@ -13,25 +13,21 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('ComValGlo'),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            HeroSection(),
-            ConstrainedBox(
-              constraints: BoxConstraints(
-                maxWidth: MQ.xlMaxWidth,
-              ),
-              child: Column(
-                children: <Widget>[
-                  OurStorySection(),
-                  AboutUsSection(),
-                ],
-              ),
+      body: ListView(
+        children: <Widget>[
+          HeroSection(),
+          ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: MQ.xlMaxWidth,
             ),
-          ],
-        ),
+            child: Column(
+              children: <Widget>[
+                OurStorySection(),
+                AboutUsSection(),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 import 'package:comvalglo/providers/media_query_provider.dart';
@@ -19,36 +17,27 @@ class AboutUsSection extends StatelessWidget {
     return Column(
       children: <Widget>[
         SectionTitle('Qui sommes nous ?'),
-//        GridView.count(
-//          crossAxisCount: 2,
-//          shrinkWrap: true,
-//          children: persons
-//              .map((Person person) => PersonItem(
-//                    name: person.name,
-//                    age: person.age,
-//                    location: person.location,
-//                    picture: 'images/${person.picture}',
-//                    presentation: person.presentation,
-//                  ))
-//              .toList(),
-//        ),
-
-        Wrap(
-          alignment: WrapAlignment.center,
-          children: _persons
-              .map((Person person) => ConstrainedBox(
-                    constraints: BoxConstraints(
-                      minWidth: MQ.xlMaxWidth / 2,
-                    ),
-                    child: PersonItem(
-                      name: person.name,
-                      age: person.age,
-                      location: person.location,
-                      picture: 'images/${person.picture}',
-                      presentation: person.presentation,
-                    ),
-                  ))
-              .toList(),
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: MQ.xlMaxWidth,
+          ),
+          child: Wrap(
+            alignment: WrapAlignment.center,
+            children: _persons
+                .map((Person person) => ConstrainedBox(
+                      constraints: BoxConstraints.tightFor(
+                        width: MQ.xlMaxWidth / 3,
+                      ),
+                      child: PersonItem(
+                        name: person.name,
+                        age: person.age,
+                        location: person.location,
+                        picture: 'images/${person.picture}',
+                        presentation: person.presentation,
+                      ),
+                    ))
+                .toList(),
+          ),
         )
       ],
     );
@@ -78,14 +67,10 @@ class PersonItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          ConstrainedBox(
-            constraints: BoxConstraints(
-              minHeight: 220.0,
-              minWidth: 220.0,
-            ),
-            child: CircleAvatar(
-              backgroundImage: AssetImage(picture),
-            ),
+          Container(
+            height: 200.0,
+            width: 200.0,
+            child: HexagonAvatar(picture: picture),
           ),
           Padding(
             padding: const EdgeInsets.only(
@@ -123,4 +108,41 @@ class PersonItem extends StatelessWidget {
       ),
     );
   }
+}
+
+class HexagonAvatar extends StatelessWidget {
+  const HexagonAvatar({
+    Key key,
+    @required this.picture,
+  }) : super(key: key);
+
+  final String picture;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipPath(
+      child: Image.asset(picture),
+      clipper: HexagonAvatarClippper(),
+    );
+  }
+}
+
+class HexagonAvatarClippper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final path = Path();
+    path.lineTo(0, size.height * 0.5);
+    path.lineTo(size.width * 0.25, 0);
+    path.lineTo(size.width * 0.75, 0);
+    path.lineTo(size.width, size.height * 0.5);
+    path.lineTo(size.width * 0.75, size.height);
+    path.lineTo(size.width * 0.25, size.height);
+    path.lineTo(0, size.height * 0.5);
+
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }

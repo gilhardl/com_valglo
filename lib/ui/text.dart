@@ -12,12 +12,27 @@ class SectionTitle extends StatelessWidget {
         top: 50.0,
         bottom: 20.0,
       ),
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: 50.0,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+            border: Border(
+                bottom: BorderSide(
+          color: Colors.grey,
+          width: 0.3,
+        ))),
+        child: Padding(
+          padding: const EdgeInsets.only(
+            left: 100.0,
+            right: 100.0,
+            bottom: 15.0,
+          ),
+          child: Text(
+            text,
+            style: TextStyle(
+              fontSize: 50.0,
+            ),
+            textAlign: TextAlign.center,
+          ),
         ),
-        textAlign: TextAlign.center,
       ),
     );
   }
