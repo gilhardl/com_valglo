@@ -82,23 +82,11 @@ class PersonCard extends StatelessWidget {
                 top: 20.0,
                 bottom: 4.0,
               ),
-              child: Text('$name',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 16.0,
-                    letterSpacing: 1.2,
-                    color: Colors.grey[800],
-                  )),
+              child: PersonNameText(name),
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
-              child: Text(
-                '$age ans - $location',
-                style: GoogleFonts.montserrat(
-                  color: Colors.grey[700],
-                  fontSize: 11.0,
-                  fontWeight: FontWeight.w200,
-                ),
-              ),
+              child: PersonMetaText('$age ans - $location'),
             ),
             Expanded(
               child: Padding(
@@ -112,5 +100,39 @@ class PersonCard extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class PersonMetaText extends StatelessWidget {
+  const PersonMetaText(this.text);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      '$text',
+      style: GoogleFonts.montserrat(
+        color: Colors.grey[700],
+        fontSize: 11.0,
+        fontWeight: FontWeight.w200,
+      ),
+    );
+  }
+}
+
+class PersonNameText extends StatelessWidget {
+  const PersonNameText(this.name);
+
+  final String name;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text('$name',
+        style: GoogleFonts.montserrat(
+          fontSize: 16.0,
+          letterSpacing: 1.2,
+          color: Colors.grey[800],
+        ));
   }
 }
