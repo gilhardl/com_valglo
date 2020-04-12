@@ -24,7 +24,7 @@ class PersonsRepository {
       lastname: 'Betton',
       firstname: 'Elise',
       age: 18,
-      location: 'Tournon-sur-Rhône',
+      location: 'Tournon-sur-Rhône (07)',
       picture: 'elise.png',
       presentation:
           'Je suis une personne organisée, rigoureuse et souvent de bonne humeur. Je suis passionnée de sport en général et plus particulièrement de rugby. Je suis compétitrice avec une âme de gagnante. Perfectionniste, je me donne à fond dans tout ce que j’entreprend.',
