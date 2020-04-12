@@ -9,6 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   font_awesome_flutter: ^8.8.1
+  google_fonts: ^0.4.0
   carousel_slider: ^1.4.1
   circle_wheel_scroll: ^0.0.1+1
 
