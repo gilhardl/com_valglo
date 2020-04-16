@@ -1,3 +1,4 @@
+import 'package:comvalglo/providers/media_query_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:comvalglo/ui/text.dart';
@@ -13,9 +14,13 @@ class HeroSection extends StatelessWidget {
           child: Center(
             child: Column(
               children: <Widget>[
-                Image.asset('images/logo.png'),
+                Image.asset(
+                  'images/logo.png',
+                  width: MediaQuery.of(context).size.width / 2.5,
+                  fit: BoxFit.cover,
+                ),
                 SizedBox(
-                  height: 30.0,
+                  height: MQ.sm(context) ? 10.0 : MQ.md(context) ? 20.0 : 50.0,
                 ),
                 HeroText('ComValGlo, avec vous pour un avenir plus beau'),
               ],

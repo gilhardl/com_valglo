@@ -21,4 +21,10 @@ class MQ {
 
   static bool xxl(BuildContext context) =>
       MediaQuery.of(context).size.width >= xxlMinWidth;
+
+  static double contentMaxWidth(BuildContext context) => sm(context)
+      ? smMaxWidth - 16
+      : md(context)
+          ? mdMaxWidth - 16
+          : lg(context) ? lgMaxWidth - 16 : xlMaxWidth - 16;
 }

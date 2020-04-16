@@ -1,3 +1,4 @@
+import 'package:comvalglo/providers/media_query_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -8,17 +9,18 @@ class SectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData _theme = Theme.of(context);
     return Padding(
-      padding: const EdgeInsets.only(
-        top: 50.0,
+      padding: EdgeInsets.only(
+        top: MQ.md(context) ? 20.0 : 50.0,
         bottom: 20.0,
       ),
       child: DecoratedBox(
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(
-              color: Colors.grey,
-              width: 0.3,
+              color: _theme.accentColor, //Colors.grey,
+              width: 0.5,
             ),
           ),
         ),
@@ -31,8 +33,8 @@ class SectionTitle extends StatelessWidget {
           child: Text(
             text,
             style: GoogleFonts.montserrat(
-              fontSize: 50.0,
-              color: Colors.grey[900],
+              fontSize: MQ.md(context) ? 24.0 : MQ.lg(context) ? 32.0 : 50.0,
+              color: _theme.primaryColor, //Colors.grey[900],
             ),
             textAlign: TextAlign.center,
           ),
@@ -93,12 +95,11 @@ class HeroText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeData _theme = Theme.of(context);
-
     return Text(
       text,
       style: GoogleFonts.galada(
         color: _theme.primaryColor,
-        fontSize: 50.0,
+        fontSize: MQ.md(context) ? 24.0 : MQ.lg(context) ? 32.0 : 50.0,
       ),
       textAlign: TextAlign.center,
     );
