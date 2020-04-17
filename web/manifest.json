@@ -1,5 +1,6 @@
 {
     "name": "ComValGlo",
+    "version": "0.0.1",
     "short_name": "ComValGlo",
     "start_url": ".",
     "display": "minimal-ui",
