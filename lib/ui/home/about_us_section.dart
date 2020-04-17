@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:comvalglo/providers/media_query_provider.dart';
 
@@ -9,36 +10,48 @@ import 'package:comvalglo/ui/text.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AboutUsSection extends StatelessWidget {
-  final List<Person> _persons = PersonsRepository().persons;
-
   @override
   Widget build(BuildContext context) {
+    final List<Person> _persons =
+        Provider.of<PersonsRepository>(context).persons;
     _persons.shuffle();
 
-    return Column(children: <Widget>[
-      SectionTitle('Qui sommes nous ?'),
-      Padding(
-        padding: const EdgeInsets.symmetric(vertical: 65.0, horizontal: 8.0),
-        child: Wrap(
-          alignment: WrapAlignment.center,
-          spacing: MQ.md(context) ? 20.0 : 50.0,
-          runSpacing: MQ.md(context) ? 70.0 : 80.0,
-          children: _persons
-              .map((Person person) => ConstrainedBox(
-                    constraints:
-                        BoxConstraints.tightFor(width: 220.0, height: 380.0),
-                    child: PersonCard(
-                      name: person.name,
-                      age: person.age,
-                      location: person.location,
-                      picture: 'images/${person.picture}',
-                      presentation: person.presentation,
-                    ),
-                  ))
-              .toList(),
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxWidth: MQ.contentMaxWidth(context),
+        minHeight: MediaQuery.of(context).size.height * 0.8,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            SectionTitle('Qui sommes nous ?'),
+            Padding(
+              padding: const EdgeInsets.only(top: 65.0),
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                spacing: MQ.md(context) ? 20.0 : 50.0,
+                runSpacing: MQ.md(context) ? 70.0 : 80.0,
+                children: _persons
+                    .map((Person person) => ConstrainedBox(
+                          constraints: BoxConstraints.tightFor(
+                              width: 220.0, height: 380.0),
+                          child: PersonCard(
+                            name: person.name,
+                            age: person.age,
+                            location: person.location,
+                            picture: 'images/${person.picture}',
+                            presentation: person.presentation,
+                          ),
+                        ))
+                    .toList(),
+              ),
+            ),
+          ],
         ),
       ),
-    ]);
+    );
   }
 }
 

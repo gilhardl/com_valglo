@@ -2,6 +2,24 @@ import 'package:comvalglo/providers/media_query_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+class AppBarMenuButtonText extends StatelessWidget {
+  const AppBarMenuButtonText(this.text);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      '$text',
+      textAlign: TextAlign.center,
+      style: GoogleFonts.montserrat(
+        height: 1.2,
+        color: Colors.white,
+      ),
+    );
+  }
+}
+
 class SectionTitle extends StatelessWidget {
   const SectionTitle(this.text);
 
@@ -15,31 +33,37 @@ class SectionTitle extends StatelessWidget {
         top: MQ.md(context) ? 20.0 : 50.0,
         bottom: 20.0,
       ),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-              color: _theme.accentColor, //Colors.grey,
-              width: 0.5,
-            ),
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(
-            left: 100.0,
-            right: 100.0,
-            bottom: 15.0,
-          ),
-          child: Text(
+      child: Column(
+        children: <Widget>[
+          Text(
             text,
-            style: GoogleFonts.montserrat(
+            style: GoogleFonts.galada(
               fontSize: MQ.md(context) ? 24.0 : MQ.lg(context) ? 32.0 : 50.0,
+              height: 1.0,
               color: _theme.primaryColor, //Colors.grey[900],
             ),
             textAlign: TextAlign.center,
           ),
-        ),
+          SectionTitleUnderline(color: _theme.accentColor),
+        ],
       ),
+    );
+  }
+}
+
+class SectionTitleUnderline extends StatelessWidget {
+  const SectionTitleUnderline({
+    @required this.color,
+  });
+
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 4.0,
+      width: 60.0,
+      color: color,
     );
   }
 }
@@ -95,13 +119,19 @@ class HeroText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeData _theme = Theme.of(context);
-    return Text(
-      text,
-      style: GoogleFonts.galada(
-        color: _theme.primaryColor,
-        fontSize: MQ.md(context) ? 24.0 : MQ.lg(context) ? 32.0 : 50.0,
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Text(
+          text,
+          style: GoogleFonts.galada(
+            color: _theme.primaryColor,
+            fontSize: 50.0,
+          ),
+          textAlign: TextAlign.center,
+        ),
       ),
-      textAlign: TextAlign.center,
     );
   }
 }
