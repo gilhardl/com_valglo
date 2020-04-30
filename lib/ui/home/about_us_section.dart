@@ -36,7 +36,7 @@ class AboutUsSection extends StatelessWidget {
                 children: _persons
                     .map((Person person) => ConstrainedBox(
                           constraints: BoxConstraints.tightFor(
-                              width: 220.0, height: 380.0),
+                              width: 250.0, height: 350.0),
                           child: PersonCard(
                             name: person.name,
                             age: person.age,
@@ -75,7 +75,7 @@ class PersonCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ConstrainedBox(
       constraints: BoxConstraints.tightFor(
-        width: 110.0,
+        width: 130.0,
         height: 190.0,
       ),
       child: Stack(
