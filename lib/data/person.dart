@@ -16,4 +16,7 @@ class Person {
   final String presentation;
 
   String get name => '$firstname $lastname';
+
+  String toString() =>
+      'Person { lastname: $lastname, firstname: $firstname, age: $age, location: $location, picture: $picture, presentation: $presentation }';
 }
