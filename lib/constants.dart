@@ -1,5 +1,7 @@
 const kAppTitle = 'ComValGlo';
 
+const kRegionPresentationVideoYoutubeId = 'WpDi-kYMnFU';
+
 // Firebase configuration
 const kFirebaseWebProjectId = 'com-valglo';
 const kFirebaseWebApiKey = 'AIzaSyCMzLLpeTFDAswfJfM7r10Mq0WHBQASO84';

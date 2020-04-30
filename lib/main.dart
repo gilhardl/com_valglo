@@ -1,7 +1,11 @@
+import 'dart:html';
+import 'dart:ui' as ui;
+
 import 'package:comvalglo/data/persons_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:comvalglo/constants.dart';
 import 'package:comvalglo/routes.dart';
 
 import 'package:comvalglo/data/photos_reposirory.dart';
@@ -14,7 +18,19 @@ import 'package:comvalglo/ui/app_bar/app_bar_title.dart';
 import 'package:comvalglo/ui/home/home_screen.dart';
 import 'package:comvalglo/ui/gallery/gallery_screen.dart';
 
-void main() => runApp(App());
+void main() {
+  // ignore: undefined_prefixed_name
+  ui.platformViewRegistry.registerViewFactory(
+      'youtube_iframe',
+      (int viewId) => IFrameElement()
+        ..width = '640'
+        ..height = '360'
+        ..src =
+            'https://www.youtube.com/embed/$kRegionPresentationVideoYoutubeId?autoplay=1'
+        ..style.border = 'none');
+
+  runApp(App());
+}
 
 class App extends StatelessWidget {
   final StorageProvider _cloudStorageProvider = CloudStorageProvider();

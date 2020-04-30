@@ -1,3 +1,4 @@
+import 'package:comvalglo/ui/home/region_presentation_section.dart';
 import 'package:flutter/material.dart';
 
 import 'package:comvalglo/routes.dart';
@@ -21,6 +22,7 @@ class HomeScreen extends StatelessWidget {
           HeroSection(),
           Column(
             children: <Widget>[
+              RegionPresentationSection(),
               OurStorySection(),
               AboutUsSection(),
               SizedBox(
