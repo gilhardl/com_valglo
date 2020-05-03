@@ -1,3 +1,4 @@
+import 'package:comvalglo/ui/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:comvalglo/routes.dart';
@@ -9,10 +10,6 @@ import 'package:comvalglo/ui/app_bar/app_bar_menu_button.dart';
 import 'package:comvalglo/ui/app_drawer/app_drawer.dart';
 import 'package:comvalglo/ui/app_drawer/app_drawer_menu_button.dart';
 
-abstract class PageScreenView extends StatelessWidget {
-  final String route = '';
-}
-
 class PageScreen extends StatelessWidget {
   const PageScreen({
     Key key,
@@ -20,7 +17,7 @@ class PageScreen extends StatelessWidget {
   })  : assert(body != null),
         super(key: key);
 
-  final PageScreenView body;
+  final Widget body;
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +28,12 @@ class PageScreen extends StatelessWidget {
                 appBar: AppBarMobile(),
                 body: body,
                 drawer: AppDrawer(
-                  menuButtons: MenuButtons.drawerList(body.route),
+                  menuButtons: MenuButtons.drawerList,
                 ),
               )
             : Scaffold(
                 appBar: AppBarDesktop(
-                  menuButtons: MenuButtons.appBarList(body.route),
+                  menuButtons: MenuButtons.appBarList,
                 ),
                 body: body,
               );
@@ -45,76 +42,92 @@ class PageScreen extends StatelessWidget {
   }
 }
 
-class MenuButtons {
-  static List<AppBarMenuButton> appBarList(String currentRoute) => [
-        AppBarMenuButton(
-          text: 'Accueil',
-          route: Routes.home,
-          currentRoute: currentRoute,
-        ),
-        AppBarMenuButton(
-          text: 'Notre région',
-          route: Routes.home,
-          currentRoute: currentRoute,
-        ),
-        AppBarMenuButton(
-          text: 'Notre histoire',
-          route: Routes.home,
-          currentRoute: currentRoute,
-        ),
-        AppBarMenuButton(
-          text: 'Qui sommes nous ?',
-          route: Routes.home,
-          currentRoute: currentRoute,
-        ),
-        AppBarMenuButton(
-          text: 'Galerie',
-          route: Routes.gallery,
-          currentRoute: currentRoute,
-        ),
-        AppBarMenuButton(
-          text: 'Nous contacter',
-          route: Routes.home,
-          currentRoute: currentRoute,
-        )
-      ];
+class PageScreenArguments {
+  const PageScreenArguments({
+    String section,
+  }) : this.section = section ?? '';
 
-  static List<AppDrawerMenuButton> drawerList(String currentRoute) => [
-        AppDrawerMenuButton(
-          text: 'Accueil',
-          icon: Icons.home,
-          route: Routes.home,
-          currentRoute: currentRoute,
-        ),
-        AppDrawerMenuButton(
-          text: 'Notre région',
-          icon: Icons.location_on,
-          route: Routes.home,
-          currentRoute: currentRoute,
-        ),
-        AppDrawerMenuButton(
-          text: 'Notre histoire',
-          icon: Icons.star,
-          route: Routes.home,
-          currentRoute: currentRoute,
-        ),
-        AppDrawerMenuButton(
-          text: 'Qui sommes nous ?',
-          icon: Icons.people,
-          route: Routes.home,
-          currentRoute: currentRoute,
-        ),
-        AppDrawerMenuButton(
-          text: 'Galerie',
-          icon: Icons.photo,
-          route: Routes.gallery,
-          currentRoute: currentRoute,
-        ),
-        AppDrawerMenuButton(
-          text: 'Nous contacter',
-          icon: Icons.question_answer,
-          route: Routes.home,
-          currentRoute: currentRoute,
-        )
-      ];
+  final String section;
+
+  @override
+  String toString() => 'PageScreenArguments { section: $section }';
+}
+
+class PageSection {
+  const PageSection({@required this.key, @required this.child});
+
+  final String key;
+  final Widget child;
+}
+
+class MenuButtons {
+  static List<AppBarMenuButton> appBarList = [
+    AppBarMenuButton(
+      text: 'Accueil',
+      route: Routes.home,
+    ),
+    AppBarMenuButton(
+      text: 'Notre région',
+      route: Routes.home,
+      args:
+          PageScreenArguments(section: HomeScreen.regionPresentationSectionKey),
+    ),
+    AppBarMenuButton(
+      text: 'Notre histoire',
+      route: Routes.home,
+      args: PageScreenArguments(section: HomeScreen.ourStorySectionKey),
+    ),
+    AppBarMenuButton(
+      text: 'Qui sommes nous ?',
+      route: Routes.home,
+      args: PageScreenArguments(section: HomeScreen.aboutUsSectionKey),
+    ),
+    AppBarMenuButton(
+      text: 'Galerie',
+      route: Routes.gallery,
+    ),
+    AppBarMenuButton(
+      text: 'Nous contacter',
+      route: Routes.home,
+      args: PageScreenArguments(section: HomeScreen.contactSectionKey),
+    )
+  ];
+
+  static List<AppDrawerMenuButton> drawerList = [
+    AppDrawerMenuButton(
+      text: 'Accueil',
+      icon: Icons.home,
+      route: Routes.home,
+    ),
+    AppDrawerMenuButton(
+      text: 'Notre région',
+      icon: Icons.location_on,
+      route: Routes.home,
+      args:
+          PageScreenArguments(section: HomeScreen.regionPresentationSectionKey),
+    ),
+    AppDrawerMenuButton(
+      text: 'Notre histoire',
+      icon: Icons.star,
+      route: Routes.home,
+      args: PageScreenArguments(section: HomeScreen.ourStorySectionKey),
+    ),
+    AppDrawerMenuButton(
+      text: 'Qui sommes nous ?',
+      icon: Icons.people,
+      route: Routes.home,
+      args: PageScreenArguments(section: HomeScreen.aboutUsSectionKey),
+    ),
+    AppDrawerMenuButton(
+      text: 'Galerie',
+      icon: Icons.photo,
+      route: Routes.gallery,
+    ),
+    AppDrawerMenuButton(
+      text: 'Nous contacter',
+      icon: Icons.question_answer,
+      route: Routes.home,
+      args: PageScreenArguments(section: HomeScreen.contactSectionKey),
+    )
+  ];
 }
