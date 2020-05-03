@@ -20,6 +20,25 @@ class AppBarMenuButtonText extends StatelessWidget {
   }
 }
 
+class DrawerMenuButtonText extends StatelessWidget {
+  const DrawerMenuButtonText(this.text);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    ThemeData _theme = Theme.of(context);
+    return Text(
+      '$text',
+      textAlign: TextAlign.start,
+      style: GoogleFonts.montserrat(
+        height: 1.2,
+        color: _theme.primaryColor,
+      ),
+    );
+  }
+}
+
 class SectionTitle extends StatelessWidget {
   const SectionTitle(this.text);
 

@@ -1,20 +1,19 @@
 import 'dart:html';
 import 'dart:ui' as ui;
 
-import 'package:comvalglo/data/persons_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:comvalglo/constants.dart';
 import 'package:comvalglo/routes.dart';
 
+import 'package:comvalglo/data/persons_repository.dart';
 import 'package:comvalglo/data/photos_reposirory.dart';
 
 import 'package:comvalglo/providers/storage/storage_provider.dart';
 import 'package:comvalglo/providers/storage/cloud_storage/cloud_storage.dart';
 
-import 'package:comvalglo/ui/app_bar/app_bar_menu_button.dart';
-import 'package:comvalglo/ui/app_bar/app_bar_title.dart';
+import 'package:comvalglo/ui/page_screen.dart';
 import 'package:comvalglo/ui/home/home_screen.dart';
 import 'package:comvalglo/ui/gallery/gallery_screen.dart';
 
@@ -59,11 +58,14 @@ class App extends StatelessWidget {
               ),
               initialRoute: Routes.home,
               routes: {
-                Routes.home: (_) => HomeScreen(
-                      appBar: _buildAppBar(Routes.home),
+                Routes.home: (_) => PageScreen(
+                      key: Key('home-screen'),
+                      body: HomeScreen(),
                     ),
-                Routes.gallery: (_) =>
-                    GalleryScreen(appBar: _buildAppBar(Routes.gallery)),
+                Routes.gallery: (_) => PageScreen(
+                      key: Key('home-screen'),
+                      body: GalleryScreen(),
+                    ),
               },
             ),
           );
@@ -84,35 +86,4 @@ class App extends StatelessWidget {
       },
     );
   }
-
-  AppBar _buildAppBar(String currentRoute) => AppBar(
-        title: AppBarTitle(),
-        actions: <Widget>[
-          AppBarMenuButton(
-            text: 'Accueil',
-            route: Routes.home,
-            currentRoute: currentRoute,
-          ),
-          AppBarMenuButton(
-            text: 'Notre histoire',
-            route: Routes.home,
-            currentRoute: currentRoute,
-          ),
-          AppBarMenuButton(
-            text: 'Qui sommes nous ?',
-            route: Routes.home,
-            currentRoute: currentRoute,
-          ),
-          AppBarMenuButton(
-            text: 'Galerie',
-            route: Routes.gallery,
-            currentRoute: currentRoute,
-          ),
-          AppBarMenuButton(
-            text: 'Nous contacter',
-            route: Routes.home,
-            currentRoute: currentRoute,
-          )
-        ],
-      );
 }
