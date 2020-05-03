@@ -14,8 +14,7 @@ import 'package:comvalglo/providers/storage/storage_provider.dart';
 import 'package:comvalglo/providers/storage/cloud_storage/cloud_storage.dart';
 
 import 'package:comvalglo/ui/page_screen.dart';
-import 'package:comvalglo/ui/home/home_screen.dart';
-import 'package:comvalglo/ui/gallery/gallery_screen.dart';
+import 'package:comvalglo/ui/screens.dart';
 
 void main() {
   // ignore: undefined_prefixed_name
@@ -50,24 +49,41 @@ class App extends StatelessWidget {
               Provider<PersonsRepository>(create: (_) => PersonsRepository())
             ],
             child: MaterialApp(
-              title: 'ComValGlo',
-              theme: ThemeData(
-                primarySwatch: Colors.red,
-                primaryColor: Colors.redAccent[400],
-                accentColor: Colors.purple[800],
-              ),
-              initialRoute: Routes.home,
-              routes: {
-                Routes.home: (_) => PageScreen(
-                      key: Key('home-screen'),
-                      body: HomeScreen(),
-                    ),
-                Routes.gallery: (_) => PageScreen(
-                      key: Key('home-screen'),
-                      body: GalleryScreen(),
-                    ),
-              },
-            ),
+                title: 'ComValGlo',
+                theme: ThemeData(
+                  primarySwatch: Colors.red,
+                  primaryColor: Colors.redAccent[400],
+                  accentColor: Colors.purple[800],
+                ),
+                initialRoute: Routes.home,
+                onGenerateRoute: (settings) {
+                  switch (settings.name) {
+                    case Routes.home:
+                      return MaterialPageRoute(
+                        builder: (_) => PageScreen(
+                          key: Key('home-screen'),
+                          body: HomeScreen(),
+                        ),
+                      );
+                      break;
+                    case Routes.gallery:
+                      return MaterialPageRoute(
+                        builder: (_) => PageScreen(
+                          key: Key('home-screen'),
+                          body: GalleryScreen(),
+                        ),
+                      );
+                      break;
+                    default:
+                      return MaterialPageRoute(
+                        builder: (_) => PageScreen(
+                          key: Key('not-found-screen'),
+                          body: NotFoundScreen(),
+                        ),
+                      );
+                      break;
+                  }
+                }),
           );
         } else {
           return Center(

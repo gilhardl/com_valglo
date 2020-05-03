@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:comvalglo/ui/page_screen.dart';
-import 'package:comvalglo/ui/gallery/gallery_section.dart';
+import 'package:comvalglo/ui/not_found/not_found_section.dart';
 
-class GalleryScreen extends StatelessWidget {
-  static final String gallerySectionKey = 'gallery';
-
+class NotFoundScreen extends StatelessWidget {
+  static final String notFoundSectionKey = 'not-found';
   final _pageSections = [
     PageSection(
-      key: GalleryScreen.gallerySectionKey,
-      child: GallerySection(),
+      key: NotFoundScreen.notFoundSectionKey,
+      child: NotFoundSection(),
     ),
   ];
 
