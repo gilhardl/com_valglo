@@ -36,7 +36,7 @@ class PersonsRepository {
       location: 'Dolomieu (38)',
       picture: 'baptiste.png',
       presentation:
-          'Je suis une personne aimable, qui aime partager la vie avec mes amis. Je vais toujours de l’avant malgré les difficulté, cela m’aide énormément aussi bien au travail qu’au rugby car je suis sportif de haut niveau. Je partage ainsi des valeurs qui m’aide à grandir et à évoluer vers les autres.',
+          'Je suis une personne aimable, qui aime partager la vie avec mes amis. Je vais toujours de l’avant malgré les difficultés, cela m’aide énormément aussi bien au travail qu’au rugby car je suis sportif de haut niveau. Je partage ainsi des valeurs qui m’aident à grandir et à évoluer vers les autres.',
     ),
     Person(
       lastname: 'Gardon',
