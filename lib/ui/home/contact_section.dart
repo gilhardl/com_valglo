@@ -160,7 +160,7 @@ class ContactDetailsText extends StatelessWidget {
       '$text',
       style: GoogleFonts.montserrat(
         color: Colors.grey[700],
-        fontSize: MQ.sm(context) ? 11.0 : 16.0,
+        fontSize: MQ.sm(context) ? 14.0 : 16.0,
         fontWeight: FontWeight.w200,
       ),
     );
