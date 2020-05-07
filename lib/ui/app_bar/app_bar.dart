@@ -5,10 +5,9 @@ import 'package:comvalglo/ui/app_bar/app_bar_menu_button.dart';
 
 class AppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
   AppBarDesktop({
-    Key key,
     @required this.menuButtons,
-  })  : preferredSize = Size.fromHeight(kToolbarHeight),
-        super(key: key);
+  })  : assert(menuButtons != null),
+        preferredSize = Size.fromHeight(kToolbarHeight);
 
   @override
   final Size preferredSize;
@@ -22,10 +21,7 @@ class AppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
 }
 
 class AppBarMobile extends StatelessWidget implements PreferredSizeWidget {
-  AppBarMobile({
-    Key key,
-  })  : preferredSize = Size.fromHeight(kToolbarHeight),
-        super(key: key);
+  AppBarMobile() : preferredSize = Size.fromHeight(kToolbarHeight);
 
   @override
   final Size preferredSize;

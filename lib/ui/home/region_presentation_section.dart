@@ -18,8 +18,12 @@ class RegionPresentationSection extends StatelessWidget {
           children: <Widget>[
             SectionTitle('Notre région'),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 30.0),
-              child: VideoPlayer(),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 30.0, horizontal: 64.0),
+              child: AspectRatio(
+                aspectRatio: 16 / 9,
+                child: VideoPlayer(),
+              ),
             ),
           ],
         ),

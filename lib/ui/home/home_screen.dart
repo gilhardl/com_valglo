@@ -1,9 +1,13 @@
+import 'dart:async';
 import 'dart:html';
 import 'dart:ui' as ui;
 
 import 'package:comvalglo/constants.dart';
+import 'package:comvalglo/core/home/bloc.dart';
+import 'package:comvalglo/ui/screens.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import 'package:comvalglo/ui/page_screen.dart';
@@ -14,6 +18,8 @@ import 'package:comvalglo/ui/home/about_us_section.dart';
 import 'package:comvalglo/ui/home/contact_section.dart';
 
 class HomeScreen extends StatefulWidget {
+  HomeScreen();
+
   static final String heroSectionKey = 'home-hero';
   static final String regionPresentationSectionKey = 'home-region-presentation';
   static final String ourStorySectionKey = 'home-our-story';
@@ -34,7 +40,9 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
     PageSection(
       key: HomeScreen.regionPresentationSectionKey,
-      child: RegionPresentationSection(),
+      child: RepaintBoundary(
+        child: RegionPresentationSection(),
+      ),
     ),
     PageSection(
       key: HomeScreen.ourStorySectionKey,
@@ -49,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: ContactSection(),
     ),
   ];
+  StreamSubscription _blocSubscription;
 
   @override
   void initState() {
@@ -64,17 +73,25 @@ class _HomeScreenState extends State<HomeScreen> {
               'https://www.youtube.com/embed/$kRegionPresentationVideoYoutubeId?autoplay=1'
           ..style.border = 'none');
 
-//    WidgetsBinding.instance.addPostFrameCallback((_) {
-//      final PageScreenArguments args =
-//          ModalRoute.of(context).settings.arguments;
-//
-//      if (args?.section != null) {
-//        final sectionIndex =
-//            _pageSections.indexWhere((section) => section.key == args.section);
-//        Future.delayed(Duration(seconds: 5)).then((value) => _scrollController
-//            .scrollTo(index: sectionIndex, duration: Duration(seconds: 1)));
-//      }
-//    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _blocSubscription = BlocProvider.of<HomeBloc>(context).listen((state) {
+        if (state == '') {
+          state = HomeScreen.heroSectionKey;
+        }
+        final sectionIndex =
+            _pageSections.indexWhere((section) => section.key == state);
+        Future.delayed(Duration(seconds: 1)).then((value) => _scrollController
+            .scrollTo(index: sectionIndex, duration: Duration(seconds: 1)));
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    if (_blocSubscription != null) {
+      _blocSubscription.cancel();
+    }
+    super.dispose();
   }
 
   @override

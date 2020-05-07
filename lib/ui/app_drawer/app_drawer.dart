@@ -6,7 +6,7 @@ import 'package:comvalglo/ui/app_drawer/app_drawer_menu_button.dart';
 class AppDrawer extends StatelessWidget {
   const AppDrawer({
     @required this.menuButtons,
-  });
+  }) : assert(menuButtons != null);
 
   final List<AppDrawerMenuButton> menuButtons;
 

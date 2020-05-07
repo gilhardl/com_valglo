@@ -1,4 +1,6 @@
+import 'package:comvalglo/core/home/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import 'package:comvalglo/routes.dart';
@@ -34,42 +36,48 @@ class App extends StatelessWidget {
               Provider<PhotosRepository>(create: (_) => photosRepository),
               Provider<PersonsRepository>(create: (_) => PersonsRepository())
             ],
-            child: MaterialApp(
-                title: 'ComValGlo',
-                theme: ThemeData(
-                  primarySwatch: Colors.red,
-                  primaryColor: Colors.redAccent[400],
-                  accentColor: Colors.purple[800],
-                ),
-                initialRoute: Routes.home,
-                onGenerateRoute: (settings) {
-                  switch (settings.name) {
-                    case Routes.home:
-                      return MaterialPageRoute(
-                        builder: (_) => PageScreen(
-                          key: Key('home-screen'),
-                          body: HomeScreen(),
-                        ),
-                      );
-                      break;
-                    case Routes.gallery:
-                      return MaterialPageRoute(
-                        builder: (_) => PageScreen(
-                          key: Key('home-screen'),
-                          body: GalleryScreen(),
-                        ),
-                      );
-                      break;
-                    default:
-                      return MaterialPageRoute(
-                        builder: (_) => PageScreen(
-                          key: Key('not-found-screen'),
-                          body: NotFoundScreen(),
-                        ),
-                      );
-                      break;
-                  }
-                }),
+            child: BlocProvider(
+              create: (_) => HomeBloc(),
+              child: MaterialApp(
+                  title: 'ComValGlo',
+                  theme: ThemeData(
+                    primarySwatch: Colors.red,
+                    primaryColor: Colors.redAccent[400],
+                    accentColor: Colors.purple[800],
+                  ),
+                  initialRoute: Routes.home,
+                  onGenerateRoute: (settings) {
+                    switch (settings.name) {
+                      case Routes.home:
+                        return MaterialPageRoute(
+                          builder: (_) => PageScreen(
+                            key: Key('home-screen'),
+                            route: settings.name,
+                            body: HomeScreen(),
+                          ),
+                        );
+                        break;
+                      case Routes.gallery:
+                        return MaterialPageRoute(
+                          builder: (_) => PageScreen(
+                            key: Key('gallery-screen'),
+                            route: settings.name,
+                            body: GalleryScreen(),
+                          ),
+                        );
+                        break;
+                      default:
+                        return MaterialPageRoute(
+                          builder: (_) => PageScreen(
+                            key: Key('not-found-screen'),
+                            route: settings.name,
+                            body: NotFoundScreen(),
+                          ),
+                        );
+                        break;
+                    }
+                  }),
+            ),
           );
         } else {
           return Center(
