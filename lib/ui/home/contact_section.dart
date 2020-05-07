@@ -22,15 +22,30 @@ class ContactSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             SectionTitle('Nous contacter'),
-            Row(
-              children: <Widget>[
-                Expanded(child: ContactDetails()),
-                Expanded(
-                    child: Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: ContactForm(),
-                )),
-              ],
+            LayoutBuilder(
+              builder: (context, constraints) {
+                return MQ.md(context)
+                    ? Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.all(24.0),
+                            child: ContactForm(),
+                          ),
+                          ContactDetails(),
+                        ],
+                      )
+                    : Row(
+                        children: <Widget>[
+                          Expanded(child: ContactDetails()),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(24.0),
+                              child: ContactForm(),
+                            ),
+                          ),
+                        ],
+                      );
+              },
             )
           ],
         ),
@@ -127,7 +142,7 @@ class ContactDetailsRow extends StatelessWidget {
             )),
         Flexible(
           flex: 5,
-          child: SectionText(text),
+          child: ContactDetailsText(text),
         )
       ],
     );
@@ -145,7 +160,7 @@ class ContactDetailsText extends StatelessWidget {
       '$text',
       style: GoogleFonts.montserrat(
         color: Colors.grey[700],
-        fontSize: 11.0,
+        fontSize: MQ.sm(context) ? 11.0 : 16.0,
         fontWeight: FontWeight.w200,
       ),
     );
