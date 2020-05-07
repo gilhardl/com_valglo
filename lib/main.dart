@@ -1,10 +1,6 @@
-import 'dart:html';
-import 'dart:ui' as ui;
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:comvalglo/constants.dart';
 import 'package:comvalglo/routes.dart';
 
 import 'package:comvalglo/data/persons_repository.dart';
@@ -17,16 +13,6 @@ import 'package:comvalglo/ui/page_screen.dart';
 import 'package:comvalglo/ui/screens.dart';
 
 void main() {
-  // ignore: undefined_prefixed_name
-  ui.platformViewRegistry.registerViewFactory(
-      'youtube_iframe',
-      (int viewId) => IFrameElement()
-        ..width = '640'
-        ..height = '360'
-        ..src =
-            'https://www.youtube.com/embed/$kRegionPresentationVideoYoutubeId?autoplay=1'
-        ..style.border = 'none');
-
   runApp(App());
 }
 
