@@ -80,8 +80,8 @@ class _HomeScreenState extends State<HomeScreen> {
         }
         final sectionIndex =
             _pageSections.indexWhere((section) => section.key == state);
-        Future.delayed(Duration(seconds: 1)).then((value) => _scrollController
-            .scrollTo(index: sectionIndex, duration: Duration(seconds: 1)));
+        _scrollController
+            .scrollTo(index: sectionIndex, duration: Duration(seconds: 1))
       });
     });
   }
