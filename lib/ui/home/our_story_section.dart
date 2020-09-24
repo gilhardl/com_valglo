@@ -20,7 +20,7 @@ class OurStorySection extends StatelessWidget {
             Column(
               children: <Widget>[
                 SectionText(
-                    '5 étudiants valentinois ambitieux ont décidé de se réunir pour accomplir un pari fou qui leur a été proposé par le conseil de développement du grand Rovaltain. Ce pari est de faire venir vivre des jeunes parents parisiens ou lyonnais dans notre belle agglomération romano-valentinoise.'),
+                    "5 étudiants valentinois ambitieux ont décidé de se réunir pour accomplir un pari fou qui leur a été proposé par le conseil de développement du grand Rovaltain. Ce pari est d'inciter des jeunes parents parisiens ou lyonnais à venir vivre dans notre belle agglomération romano-valentinoise."),
                 SectionText(
                     'Cette région, riche de son terroir, de son dynamisme et de ses nombreux secteurs d’activité présente tout ce qu’il y a de mieux pour vivre.'),
                 SectionText(
